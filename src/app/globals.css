@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f5f7fb;
+  color: #17263a;
+}
+main {
+  max-width: 960px;
+  margin: 64px auto;
+  padding: 24px;
+}
+.eyebrow {
+  color: #465b76;
+  font-weight: 600;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+article {
+  background: white;
+  border: 1px solid #d9e0e9;
+  border-radius: 12px;
+  padding: 24px;
+}

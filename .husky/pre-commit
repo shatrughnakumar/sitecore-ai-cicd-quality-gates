@@ -1,0 +1,4 @@
+git diff --cached --check
+pnpm secrets:check
+pnpm exec lint-staged
+pnpm secrets:check

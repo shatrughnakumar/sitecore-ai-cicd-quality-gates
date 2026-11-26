@@ -1,60 +1,204 @@
 # SitecoreAI CI/CD Quality Gates
 
-An independent, community-oriented reference for engineering quality in SitecoreAI-oriented Next.js teams. This is a standalone demo with mock content, not an official Sitecore product or a connected Content SDK application. No tenant, API key, or paid service is needed.
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Node.js](https://img.shields.io/badge/Node.js-22-green)
+![Next.js](https://img.shields.io/badge/Next.js-Framework-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-Language-blue)
+![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-blue)
+![DevSecOps](https://img.shields.io/badge/DevSecOps-Quality%20First-orange)
 
-## Quick start (Windows PowerShell or Bash)
+An open-source CI/CD reference implementation designed to help SitecoreAI and Next.js development teams establish consistent engineering standards, automated quality gates, and secure software delivery practices.
 
-Install Git and Node.js 22, then run these commands inside this folder (initialize Git only if it is not already a repository):
+## Why This Repository?
 
-```sh
-git init -b main
+Building a modern digital experience platform is not just about delivering features. It is equally important to ensure that every code change meets the expected quality, security, and maintainability standards.
+
+This repository demonstrates how teams can introduce automated validation throughout the development lifecycle, from a developer's first commit to production build readiness.
+
+The objective is simple: **detect issues early, reduce delivery risks, and build quality into the engineering process.**
+
+## Key Features
+
+- Automated pre-commit and pre-push validation
+- ESLint and Prettier integration
+- TypeScript type checking
+- Unit testing using Vitest
+- Automated code coverage enforcement
+- Secret and credential detection
+- Dependency vulnerability scanning
+- GitHub Actions CI workflows
+- CodeQL static security analysis
+- Gitleaks secret scanning
+- Dependabot configuration
+- Production build validation
+- Application health checks and smoke testing
+- Pull request governance
+
+## Quality Gates
+
+| Quality Gate | Pre-Commit | Pre-Push | CI |
+|---|---|---|---|
+| Secret detection | Yes | — | Yes |
+| Code formatting | Yes | — | Yes |
+| ESLint validation | Yes | — | Yes |
+| TypeScript validation | — | Yes | Yes |
+| Unit testing | — | Yes | Yes |
+| Code coverage | — | — | Yes |
+| Dependency auditing | — | — | Yes |
+| Security analysis | — | — | Yes |
+| Production build | — | — | Yes |
+| Smoke testing | — | — | Yes |
+
+The sample enforces an 85% code coverage threshold for its content-processing boundary.
+
+Local Git hooks provide early developer feedback, while GitHub Actions provides independent validation. Required status checks and branch protection should be configured to enforce merge policies.
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Next.js | Application framework |
+| React | Component development |
+| TypeScript | Type safety |
+| pnpm | Dependency management |
+| Vitest | Unit testing |
+| ESLint | Code quality |
+| Prettier | Code formatting |
+| Husky | Git hooks |
+| lint-staged | Staged-file validation |
+| GitHub Actions | Continuous integration |
+| Gitleaks | Secret detection |
+| CodeQL | Static security analysis |
+| Dependabot | Dependency maintenance |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 22
+- Git
+- pnpm 10.28.2
+
+### Clone and Install
+
+```bash
+git clone https://github.com/shatrughnakumar/sitecore-ai-cicd-quality-gates.git
+
+cd sitecore-ai-cicd-quality-gates
+
 npm install --global pnpm@10.28.2
-pnpm install --no-frozen-lockfile
-pnpm format
-pnpm check
-git add .
-git commit -m "chore: initialize quality gates lab"
+
+pnpm install --frozen-lockfile
+```
+
+### Run the Application
+
+```bash
 pnpm dev
 ```
 
-Open http://localhost:3000. Stop the dev server before testing a production build.
+Open http://localhost:3000 in your browser.
 
-**First-run requirement:** the distribution does not contain a generated lockfile because registry access was unavailable during packaging. The install command creates `pnpm-lock.yaml`. Review and commit it; all subsequent installs use `pnpm install --frozen-lockfile`. CI intentionally fails without it. `pnpm format` normalizes the sample with the installed formatter. Review its changes before committing. Never substitute a fabricated lockfile.
+### Execute Quality Checks
 
-## Publish to GitHub
-
-Create an empty public GitHub repository named `sitecore-ai-cicd-quality-gates` (no initial README/license). Then:
-
-```sh
-git remote add origin https://github.com/YOUR-USERNAME/sitecore-ai-cicd-quality-gates.git
-git push -u origin main
+```bash
+pnpm check
 ```
 
-Review the Actions tab. Configure branch protection using [the setup guide](docs/github-setup.md). If using an existing repository, clone it instead and copy these files into it; do not overwrite existing work without review.
+### Security Audit
 
-## Quality checks
+```bash
+pnpm audit
+```
 
-| Gate | Local commit | Local push | CI |
-| --- | --- | --- | --- |
-| Staged secret guard | Yes | No | All tracked files |
-| Formatting and lint | Staged source | No | Full source |
-| TypeScript | No | Yes | Yes |
-| Unit and scanner tests | No | Yes | Yes |
-| Coverage (85% on content boundary) | No | No | Yes |
-| Dependency audit (high/critical) | No | No | Yes |
-| Production build and smoke tests | No | No | Yes |
-| Gitleaks history, dependency review, CodeQL | No | No | Security workflow |
+### Production Build
 
-Run `pnpm check` for formatting, lint, types, coverage, scanner tests and build. Run `pnpm audit` separately (network required). Use `pnpm start` in one terminal and `pnpm smoke` in another for runtime checks. The coverage target covers the mock content boundary only, not all UI or integration behavior.
+```bash
+pnpm build
+```
 
-## Architecture and adoption
+### Runtime Validation
 
-- [Architecture](docs/architecture.md)
-- [Quality gates and failure lab](docs/quality-gates.md)
-- [GitHub setup](docs/github-setup.md)
-- [Validation status](docs/validation.md)
-- [Contributing](CONTRIBUTING.md)
+Start the production application:
 
-Phase 1–3 scope: application, local gates, CI and security checks. Sitecore tenant deployment, hosting, environment approval and actual SDK integration are future work. This repository does not deploy anything or use generative AI for code review.
+```bash
+pnpm start
+```
 
-MIT licensed. Sitecore is a trademark of its respective owner; this project is unaffiliated.
+In a separate terminal:
+
+```bash
+pnpm smoke
+```
+
+## Shift-Left Security
+
+Security should be part of everyday development rather than a separate activity performed at the end of a release.
+
+This implementation demonstrates how dependency auditing, secret detection, static analysis, and automated validation can help identify potential security risks earlier in the delivery lifecycle.
+
+## Who Can Benefit?
+
+- Sitecore developers
+- Technical and Solution Architects
+- Next.js development teams
+- DevOps engineers
+- Engineering leads
+- Teams modernizing traditional CMS implementations
+
+The repository can be used as a learning resource, an engineering reference, or a starting point for establishing project-specific quality standards.
+
+## Documentation
+
+- [Architecture Overview](docs/architecture.md)
+- [Quality Gates and Failure Scenarios](docs/quality-gates.md)
+- [GitHub Configuration](docs/github-setup.md)
+- [Validation Status](docs/validation.md)
+- [Contribution Guidelines](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+
+## Roadmap
+
+- [x] Next.js application foundation
+- [x] Local Git quality gates
+- [x] Automated CI workflows
+- [x] Dependency and security scanning
+- [x] Unit testing and coverage enforcement
+- [ ] Sitecore Content SDK integration
+- [ ] SitecoreAI deployment automation
+- [ ] Environment-based deployment approvals
+- [ ] End-to-end testing with Playwright
+- [ ] Automated accessibility testing
+- [ ] AI-assisted code reviews
+- [ ] Release and rollback strategies
+
+## Contributing
+
+Community contributions, suggestions, architectural discussions, and improvements are welcome.
+
+Feel free to open an issue or submit a pull request.
+
+## About the Project
+
+This project is an independent community contribution focused on engineering excellence, DevSecOps, and modern digital experience architecture.
+
+The current implementation uses mock content and does not require a Sitecore tenant, API credentials, or a paid service. Live Sitecore Content SDK integration and deployment automation are planned enhancements.
+
+## Author
+
+**Shatrughna Kumar**
+
+Technical Architect | Digital Experience Platforms | Software Architecture | Sitecore | .NET | AI
+
+- [Technical Blog](https://www.shatrughnakumar.com/)
+- [GitHub](https://github.com/shatrughnakumar)
+
+## License
+
+This project is licensed under the MIT License.
+
+Sitecore is a trademark of its respective owner. This is an independent community project and is not affiliated with or endorsed by Sitecore.
+
+---
+
+**Quality is not a final checkpoint. It is an engineering practice.**
